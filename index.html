@@ -1398,6 +1398,416 @@
     .package-name { font-size: 44px; }
     .final-cta-title { font-size: 36px; }
   }
+
+  /* ================================
+     AUDIT MODAL
+  ================================= */
+  .audit-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,0.92);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .audit-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .audit-modal {
+    background: var(--black);
+    border: 1px solid rgba(200,169,110,0.3);
+    max-width: 560px;
+    width: 100%;
+    position: relative;
+    transform: translateY(24px);
+    transition: transform 0.35s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .audit-overlay.open .audit-modal {
+    transform: translateY(0);
+  }
+
+  .audit-modal-header {
+    padding: 40px 44px 28px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .audit-modal-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .audit-modal-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    line-height: 1.05;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .audit-modal-sub {
+    font-size: 13px;
+    color: rgba(245,244,240,0.45);
+    line-height: 1.6;
+  }
+
+  .audit-modal-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 36px; height: 36px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+
+  .audit-modal-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .audit-modal-body {
+    padding: 32px 44px 40px;
+  }
+
+  /* Steps indicator */
+  .audit-steps-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 32px;
+  }
+
+  .audit-step-seg {
+    flex: 1;
+    height: 2px;
+    background: rgba(200,169,110,0.15);
+    transition: background 0.4s;
+  }
+
+  .audit-step-seg.done { background: var(--accent); }
+  .audit-step-seg.active { background: var(--accent); opacity: 0.5; }
+
+  /* Form screens */
+  .audit-screen {
+    display: none;
+  }
+
+  .audit-screen.active {
+    display: block;
+    animation: fadeUp 0.3s ease forwards;
+  }
+
+  .audit-field {
+    margin-bottom: 20px;
+  }
+
+  .audit-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .audit-input {
+    width: 100%;
+    background: rgba(245,244,240,0.04);
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .audit-input:focus {
+    border-color: rgba(200,169,110,0.5);
+  }
+
+  .audit-input::placeholder {
+    color: rgba(245,244,240,0.2);
+  }
+
+  /* Radio options */
+  .audit-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .audit-option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    cursor: crosshair;
+    transition: all 0.2s;
+    font-size: 14px;
+    color: rgba(245,244,240,0.6);
+    position: relative;
+  }
+
+  .audit-option input[type="radio"] {
+    display: none;
+  }
+
+  .audit-option-dot {
+    width: 14px; height: 14px;
+    border: 1px solid rgba(200,169,110,0.4);
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  .audit-option.selected {
+    border-color: rgba(200,169,110,0.5);
+    color: var(--white);
+    background: rgba(200,169,110,0.06);
+  }
+
+  .audit-option.selected .audit-option-dot {
+    border-color: var(--accent);
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(200,169,110,0.4);
+  }
+
+  .audit-screen-q {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.15;
+  }
+
+  .audit-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .audit-btn-next {
+    flex: 1;
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .audit-btn-next:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .audit-btn-back {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 20px;
+    transition: all 0.2s;
+  }
+
+  .audit-btn-back:hover {
+    border-color: var(--white);
+    color: var(--white);
+  }
+
+  /* Success screen */
+  .audit-success-icon {
+    width: 52px; height: 52px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .audit-success-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .audit-success-text {
+    font-size: 14px;
+    color: rgba(245,244,240,0.5);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  /* Audit CTA button (global) */
+  .btn-audit {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .btn-audit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .btn-audit:hover::before { transform: scaleX(1); }
+
+  .btn-audit span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-audit:hover span { color: var(--black); }
+
+  /* Audit strip — standalone section */
+  .audit-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .audit-strip-left {
+    flex: 1;
+    padding: 48px 0;
+    border-right: 1px solid var(--border);
+    padding-right: 60px;
+  }
+
+  .audit-strip-right {
+    padding: 48px 0 48px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    min-width: 300px;
+  }
+
+  .audit-strip-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .audit-strip-title {
+    font-family: var(--font-display);
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .audit-strip-text {
+    font-size: 13px;
+    color: rgba(245,244,240,0.45);
+    line-height: 1.7;
+    max-width: 420px;
+  }
+
+  .audit-strip-points {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .audit-strip-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(245,244,240,0.6);
+    line-height: 1.5;
+  }
+
+  .audit-strip-point-dot {
+    width: 5px; height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .audit-strip-meta {
+    font-size: 11px;
+    color: rgba(245,244,240,0.25);
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 900px) {
+    .audit-strip { flex-direction: column; padding: 0 28px; }
+    .audit-strip-left { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 32px; }
+    .audit-strip-right { padding: 32px 0; min-width: unset; }
+  }
+
+  @media (max-width: 540px) {
+    .audit-modal-header { padding: 28px 24px 20px; }
+    .audit-modal-body { padding: 24px 24px 32px; }
+    .audit-modal-title { font-size: 28px; }
+    .audit-strip { padding: 0 16px; }
+    .audit-strip-title { font-size: 32px; }
+  }
 </style>
 </head>
 <body>
@@ -1438,7 +1848,7 @@
     </p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="openTelegram()">Пройти отбор</button>
-      <button class="btn-secondary" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'})">Узнать свой уровень</button>
+      <button class="btn-audit" onclick="openAudit()"><span>Бесплатный аудит уровня</span></button>
     </div>
   </div>
 
@@ -1917,6 +2327,33 @@
   </div>
 </section>
 
+<!-- AUDIT STRIP -->
+<div class="audit-strip">
+  <div class="audit-strip-left">
+    <span class="audit-strip-tag">Бесплатно · 15–20 минут</span>
+    <h2 class="audit-strip-title">Бесплатный<br>аудит уровня</h2>
+    <p class="audit-strip-text" style="margin-bottom:24px;">Это не тест на грамматику. Это короткая сессия, где ты узнаешь свой реальный балл, где именно теряешь очки — и что конкретно нужно исправить.</p>
+    <div class="audit-strip-points">
+      <div class="audit-strip-point">
+        <div class="audit-strip-point-dot"></div>
+        <span>Определим текущий уровень по Speaking и Writing</span>
+      </div>
+      <div class="audit-strip-point">
+        <div class="audit-strip-point-dot"></div>
+        <span>Найдём узкое место — то, что тебя тормозит прямо сейчас</span>
+      </div>
+      <div class="audit-strip-point">
+        <div class="audit-strip-point-dot"></div>
+        <span>Дадим конкретную стратегию — что делать, чтобы достичь нужного балла</span>
+      </div>
+    </div>
+  </div>
+  <div class="audit-strip-right">
+    <button class="btn-audit" onclick="openAudit()"><span>Записаться на аудит</span></button>
+    <p class="audit-strip-meta">Без обязательств. Просто честный разбор.</p>
+  </div>
+</div>
+
 <!-- LIMIT -->
 <section class="limit">
   <div class="limit-inner">
@@ -1941,7 +2378,7 @@
     <p class="final-cta-alt">Без обязательств. Просто диагностика и разговор.</p>
     <div class="final-actions">
       <button class="btn-primary" onclick="openTelegram()">Записаться</button>
-      <button class="btn-secondary" onclick="openTelegram()">Написать в Telegram</button>
+      <button class="btn-audit" onclick="openAudit()"><span>Бесплатный аудит</span></button>
     </div>
   </div>
 </section>
@@ -2095,6 +2532,230 @@
     } else {
       nav.style.background = 'rgba(10,10,10,0.85)';
     }
+  });
+</script>
+<!-- AUDIT MODAL -->
+<div class="audit-overlay" id="auditOverlay" onclick="handleOverlayClick(event)">
+  <div class="audit-modal" id="auditModal">
+
+    <div class="audit-modal-header">
+      <button class="audit-modal-close" onclick="closeAudit()">&#215;</button>
+      <span class="audit-modal-tag">Бесплатно · 15–20 минут</span>
+      <div class="audit-modal-title">Аудит уровня<br>IELTS</div>
+      <p class="audit-modal-sub">Узнай, где теряешь баллы — и что делать прямо сейчас.</p>
+    </div>
+
+    <div class="audit-modal-body">
+      <!-- Steps bar -->
+      <div class="audit-steps-bar">
+        <div class="audit-step-seg active" id="aseg1"></div>
+        <div class="audit-step-seg" id="aseg2"></div>
+        <div class="audit-step-seg" id="aseg3"></div>
+        <div class="audit-step-seg" id="aseg4"></div>
+      </div>
+
+      <!-- Screen 1: Contact -->
+      <div class="audit-screen active" id="ascreen1">
+        <div class="audit-field">
+          <label class="audit-label">Твоё имя</label>
+          <input class="audit-input" type="text" id="auditName" placeholder="Например, Алина" autocomplete="off">
+        </div>
+        <div class="audit-field">
+          <label class="audit-label">Telegram или WhatsApp</label>
+          <input class="audit-input" type="text" id="auditContact" placeholder="@username или +7 999 000 00 00" autocomplete="off">
+        </div>
+        <div class="audit-nav">
+          <button class="audit-btn-next" id="aNext1" onclick="auditNext(1)">Далее →</button>
+        </div>
+      </div>
+
+      <!-- Screen 2: Сдавал раньше? -->
+      <div class="audit-screen" id="ascreen2">
+        <div class="audit-screen-q">Сдавал IELTS раньше?</div>
+        <div class="audit-options" id="aopts2">
+          <label class="audit-option" onclick="selectOpt(this,'q2')">
+            <input type="radio" name="q2" value="Нет, первый раз">
+            <span class="audit-option-dot"></span>
+            <span>Нет, первый раз</span>
+          </label>
+          <label class="audit-option" onclick="selectOpt(this,'q2')">
+            <input type="radio" name="q2" value="Да, получил балл ниже нужного">
+            <span class="audit-option-dot"></span>
+            <span>Да, получил балл ниже нужного</span>
+          </label>
+          <label class="audit-option" onclick="selectOpt(this,'q2')">
+            <input type="radio" name="q2" value="Да, хочу повысить балл">
+            <span class="audit-option-dot"></span>
+            <span>Да, хочу повысить балл</span>
+          </label>
+        </div>
+        <div class="audit-nav">
+          <button class="audit-btn-back" onclick="auditBack(2)">←</button>
+          <button class="audit-btn-next" id="aNext2" onclick="auditNext(2)" disabled>Далее →</button>
+        </div>
+      </div>
+
+      <!-- Screen 3: Целевой балл -->
+      <div class="audit-screen" id="ascreen3">
+        <div class="audit-screen-q">Какой балл тебе нужен?</div>
+        <div class="audit-options" id="aopts3">
+          <label class="audit-option" onclick="selectOpt(this,'q3')">
+            <input type="radio" name="q3" value="5.5–6.0">
+            <span class="audit-option-dot"></span>
+            <span>5.5–6.0 (базовый)</span>
+          </label>
+          <label class="audit-option" onclick="selectOpt(this,'q3')">
+            <input type="radio" name="q3" value="6.5–7.0">
+            <span class="audit-option-dot"></span>
+            <span>6.5–7.0 (университет / работа за рубежом)</span>
+          </label>
+          <label class="audit-option" onclick="selectOpt(this,'q3')">
+            <input type="radio" name="q3" value="7.5+">
+            <span class="audit-option-dot"></span>
+            <span>7.5+ (иммиграция / престижный вуз)</span>
+          </label>
+          <label class="audit-option" onclick="selectOpt(this,'q3')">
+            <input type="radio" name="q3" value="Ещё не знаю">
+            <span class="audit-option-dot"></span>
+            <span>Ещё не знаю</span>
+          </label>
+        </div>
+        <div class="audit-nav">
+          <button class="audit-btn-back" onclick="auditBack(3)">←</button>
+          <button class="audit-btn-next" id="aNext3" onclick="auditNext(3)" disabled>Далее →</button>
+        </div>
+      </div>
+
+      <!-- Screen 4: Когда нужен результат? -->
+      <div class="audit-screen" id="ascreen4">
+        <div class="audit-screen-q">Когда нужен результат?</div>
+        <div class="audit-options" id="aopts4">
+          <label class="audit-option" onclick="selectOpt(this,'q4')">
+            <input type="radio" name="q4" value="Через 1–3 месяца">
+            <span class="audit-option-dot"></span>
+            <span>Через 1–3 месяца — срочно</span>
+          </label>
+          <label class="audit-option" onclick="selectOpt(this,'q4')">
+            <input type="radio" name="q4" value="Через 3–6 месяцев">
+            <span class="audit-option-dot"></span>
+            <span>Через 3–6 месяцев</span>
+          </label>
+          <label class="audit-option" onclick="selectOpt(this,'q4')">
+            <input type="radio" name="q4" value="Через 6+ месяцев">
+            <span class="audit-option-dot"></span>
+            <span>Через 6+ месяцев, никуда не тороплюсь</span>
+          </label>
+        </div>
+        <div class="audit-nav">
+          <button class="audit-btn-back" onclick="auditBack(4)">←</button>
+          <button class="audit-btn-next" id="aNext4" onclick="auditSubmit()" disabled>Записаться на аудит →</button>
+        </div>
+      </div>
+
+      <!-- Screen: Success -->
+      <div class="audit-screen" id="ascreen-success">
+        <div class="audit-success-icon">&#10003;</div>
+        <div class="audit-success-title">Готово.<br>Открываем Telegram.</div>
+        <p class="audit-success-text">Заявка отправлена. Сейчас откроется чат — там уже будут твои ответы. Мы свяжемся в течение нескольких часов и назначим время аудита.</p>
+        <button class="audit-btn-next" onclick="closeAudit()">Закрыть</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ─── AUDIT MODAL ──────────────────────────────
+  const auditData = { name:'', contact:'', q2:'', q3:'', q4:'' };
+
+  function openAudit() {
+    document.getElementById('auditOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // reset to screen 1
+    showAuditScreen(1);
+    updateSegments(1);
+  }
+
+  function closeAudit() {
+    document.getElementById('auditOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('auditOverlay')) closeAudit();
+  }
+
+  function showAuditScreen(n) {
+    document.querySelectorAll('.audit-screen').forEach(s => s.classList.remove('active'));
+    const target = n === 'success'
+      ? document.getElementById('ascreen-success')
+      : document.getElementById('ascreen' + n);
+    if (target) target.classList.add('active');
+  }
+
+  function updateSegments(current) {
+    for (let i = 1; i <= 4; i++) {
+      const seg = document.getElementById('aseg' + i);
+      if (!seg) continue;
+      seg.classList.remove('done', 'active');
+      if (i < current) seg.classList.add('done');
+      else if (i === current) seg.classList.add('active');
+    }
+  }
+
+  function selectOpt(el, name) {
+    document.querySelectorAll(`[onclick="selectOpt(this,'${name}')"]`).forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    const val = el.querySelector('input').value;
+    auditData[name] = val;
+    // enable next button
+    const screen = name.replace('q','');
+    const btn = document.getElementById('aNext' + screen);
+    if (btn) btn.disabled = false;
+  }
+
+  function auditNext(screen) {
+    if (screen === 1) {
+      const name = document.getElementById('auditName').value.trim();
+      const contact = document.getElementById('auditContact').value.trim();
+      if (!name || !contact) {
+        document.getElementById('auditName').style.borderColor = name ? '' : 'rgba(200,80,80,0.6)';
+        document.getElementById('auditContact').style.borderColor = contact ? '' : 'rgba(200,80,80,0.6)';
+        return;
+      }
+      auditData.name = name;
+      auditData.contact = contact;
+    }
+    showAuditScreen(screen + 1);
+    updateSegments(screen + 1);
+  }
+
+  function auditBack(screen) {
+    showAuditScreen(screen - 1);
+    updateSegments(screen - 1);
+  }
+
+  function auditSubmit() {
+    const msg =
+`Привет! Хочу записаться на бесплатный аудит уровня IELTS.
+
+👤 Имя: ${auditData.name}
+📱 Контакт: ${auditData.contact}
+📋 Сдавал IELTS раньше: ${auditData.q2 || '—'}
+🎯 Нужный балл: ${auditData.q3 || '—'}
+⏰ Дедлайн: ${auditData.q4 || '—'}`;
+
+    showAuditScreen('success');
+    updateSegments(5); // all filled
+
+    setTimeout(() => {
+      window.open('https://t.me/PumpEngSchool?text=' + encodeURIComponent(msg), '_blank');
+    }, 600);
+  }
+
+  // close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeAudit();
   });
 </script>
 </body>
