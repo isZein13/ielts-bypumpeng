@@ -11,7 +11,7 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
+ :root {
     --black: #0a0a0a;
     --white: #f5f4f0;
     --navy: #1a2448;
@@ -1400,9 +1400,315 @@
     .final-cta-title { font-size: 36px; }
   }
 
+
   /* ================================
-     AUDIT MODAL
+     STANDARD PACKET
   ================================= */
+  .standard-section {
+    border-top: 1px solid var(--border);
+  }
+
+  /* Selector */
+  .std-selector-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .std-selector-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .std-selector {
+    display: flex;
+    gap: 2px;
+  }
+
+  .std-opt {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--font-body);
+    padding: 16px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+
+  .std-opt.active {
+    border-color: var(--accent);
+    background: rgba(200,169,110,0.07);
+    color: var(--white);
+  }
+
+  .std-opt-num {
+    font-family: var(--font-display);
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: inherit;
+    transition: color 0.25s;
+  }
+
+  .std-opt.active .std-opt-num { color: var(--accent-light); }
+
+  .std-opt-sub {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Card layout */
+  .std-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(200,169,110,0.25);
+    background: rgba(26,36,72,0.2);
+    transition: all 0.3s;
+  }
+
+  .std-card-left {
+    padding: 48px 44px;
+    border-right: 1px solid rgba(200,169,110,0.15);
+  }
+
+  .std-card-right {
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .std-card-name {
+    font-family: var(--font-display);
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: var(--accent-light);
+    margin-bottom: 6px;
+    transition: all 0.3s;
+  }
+
+  .std-card-name span {
+    color: var(--accent);
+    font-size: 48px;
+  }
+
+  .std-card-tagline {
+    font-size: 13px;
+    color: rgba(245,244,240,0.4);
+    font-style: italic;
+    transition: all 0.3s;
+  }
+
+  .std-features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .std-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(245,244,240,0.6);
+    transition: opacity 0.3s;
+  }
+
+  /* Price block */
+  .std-price-block {
+    border: 1px solid rgba(200,169,110,0.3);
+    padding: 24px 28px;
+    background: rgba(200,169,110,0.04);
+    box-shadow: 0 0 24px rgba(200,169,110,0.06);
+  }
+
+  .std-price-label {
+    display: block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .std-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .std-price-big {
+    font-family: var(--font-display);
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: var(--accent-light);
+    transition: all 0.3s;
+  }
+
+  .std-price-period {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .std-price-note {
+    font-size: 12px;
+    color: rgba(245,244,240,0.35);
+    line-height: 1.5;
+  }
+
+  /* App block */
+  .std-app-block {
+    border: 1px solid var(--border);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .std-app-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .std-app-tag {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+
+  .std-app-subtitle {
+    font-size: 12px;
+    color: rgba(245,244,240,0.35);
+  }
+
+  .std-app-desc {
+    font-size: 12px;
+    color: rgba(245,244,240,0.45);
+    line-height: 1.6;
+  }
+
+  .std-app-btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .std-app-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid var(--border);
+    color: rgba(245,244,240,0.5);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .std-app-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Individual toggle inside Standard */
+  .std-individual-wrap {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .std-individual-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+  }
+
+  .std-checkbox {
+    width: 20px; height: 20px;
+    border: 1px solid rgba(200,169,110,0.35);
+    background: transparent;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .std-checkbox.checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .std-individual-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .std-individual-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(245,244,240,0.75);
+    letter-spacing: 0.3px;
+  }
+
+  .std-individual-sub {
+    font-size: 11px;
+    color: rgba(245,244,240,0.35);
+    line-height: 1.5;
+  }
+    border-color: rgba(200,169,110,0.3);
+    color: var(--accent);
+    gap: 10px;
+  }
+
+  .std-app-btn--tg:hover {
+    background: rgba(200,169,110,0.08);
+    border-color: var(--accent);
+  }
+    .std-card-left { border-right: none; border-bottom: 1px solid rgba(200,169,110,0.15); padding: 36px 28px; }
+    .std-card-right { padding: 36px 28px; }
+    .std-selector-wrap { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+
+  @media (max-width: 540px) {
+    .std-card-left { padding: 28px 20px; }
+    .std-card-right { padding: 28px 20px; }
+    .std-card-name { font-size: 48px; }
+    .std-card-name span { font-size: 36px; }
+    .std-price-big { font-size: 52px; }
+    .std-opt { padding: 14px 28px; }
+    .std-opt-num { font-size: 34px; }
+  }
+
   .audit-overlay {
     position: fixed;
     inset: 0;
@@ -1962,12 +2268,136 @@
   </div>
 </section>
 
+<!-- STANDARD PACKET -->
+<section class="packages standard-section" id="standard">
+  <div class="packages-header">
+    <div>
+      <div class="section-label">
+        <span class="section-label-num">03</span>
+        <div class="section-label-line"></div>
+        <span class="section-label-text">Standard Packet</span>
+      </div>
+      <h2 class="section-title">Английский<br>как язык</h2>
+    </div>
+    <p style="font-size:13px;color:var(--muted);max-width:340px;line-height:1.8;">Не подготовка к экзамену — а живой английский. Разговорная практика, грамматика, уверенность в речи. Для тех, кто хочет говорить, а не сдавать.</p>
+  </div>
+
+  <!-- Toggle -->
+  <div class="std-selector-wrap">
+    <p class="std-selector-label">Количество занятий в месяц:</p>
+    <div class="std-selector">
+      <button class="std-opt active" id="stdOpt8" onclick="switchStd(8)">
+        <span class="std-opt-num">8</span>
+        <span class="std-opt-sub">занятий / мес.</span>
+      </button>
+      <button class="std-opt" id="stdOpt12" onclick="switchStd(12)">
+        <span class="std-opt-num">12</span>
+        <span class="std-opt-sub">занятий / мес.</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Card -->
+  <div class="std-card">
+
+    <!-- Left: details -->
+    <div class="std-card-left">
+      <div class="package-tag" style="margin-bottom:20px;">Standard Packet</div>
+      <div class="std-card-name">STANDARD <span id="stdNameSub">× 8</span></div>
+      <p class="std-card-tagline" id="stdTagline">Устойчивый прогресс. Без спешки.</p>
+
+      <div class="package-specs" style="margin-top:28px;">
+        <div class="package-spec">
+          <span class="package-spec-label">Занятий / мес.</span>
+          <span class="package-spec-value" id="stdSpecLessons">8</span>
+        </div>
+        <div class="package-spec">
+          <span class="package-spec-label">Занятий / нед.</span>
+          <span class="package-spec-value" id="stdSpecPerWeek">2×</span>
+        </div>
+        <div class="package-spec">
+          <span class="package-spec-label">Группа</span>
+          <span class="package-spec-value">5–7 чел.</span>
+        </div>
+        <div class="package-spec">
+          <span class="package-spec-label">Формат</span>
+          <span class="package-spec-value">Онлайн</span>
+        </div>
+      </div>
+
+      <div class="std-features" style="margin-top:24px;">
+        <div class="std-feature"><span class="package-extra-dot"></span><span>Speaking и живая практика — каждое занятие</span></div>
+        <div class="std-feature"><span class="package-extra-dot"></span><span>Грамматика в контексте, не по учебнику</span></div>
+        <div class="std-feature"><span class="package-extra-dot"></span><span>Разбор ошибок и обратная связь</span></div>
+        <div class="std-feature" id="stdExtraFeature" style="opacity:0.35;transition:opacity 0.3s;"><span class="package-extra-dot"></span><span id="stdExtraText">Дополнительный разговорный клуб × 2/мес.</span></div>
+      </div>
+
+      <!-- Individual toggle -->
+      <div class="std-individual-wrap" id="stdIndividualWrap">
+        <label class="std-individual-label" onclick="toggleIndividual()">
+          <div class="std-checkbox" id="stdCheckbox">
+            <svg class="std-check-icon" id="stdCheckIcon" width="10" height="10" viewBox="0 0 10 10" fill="none" style="display:none;">
+              <path d="M1.5 5L4 7.5L8.5 2.5" stroke="var(--black)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="std-individual-text">
+            <span class="std-individual-title">Хочу заниматься индивидуально</span>
+            <span class="std-individual-sub">Без группы — личный темп и программа под тебя. Цену обсуждаем в чате.</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Right: price + app -->
+    <div class="std-card-right">
+
+      <div class="std-price-block">
+        <span class="std-price-label">Стоимость в месяц</span>
+        <div class="std-price-row">
+          <span class="std-price-big" id="stdPrice">$170</span>
+          <span class="std-price-period">/ мес.</span>
+        </div>
+        <p class="std-price-note" id="stdPriceNote">8 занятий · ~$21 за занятие</p>
+        <div class="package-seats" style="margin-top:20px;margin-bottom:0;">
+          <div class="package-seats-dot"></div>
+          <span class="package-seats-text">5–7 человек в группе</span>
+        </div>
+      </div>
+
+      <!-- App block -->
+      <div class="std-app-block">
+        <div class="std-app-header">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" stroke="rgba(200,169,110,0.4)"/>
+            <path d="M10 16h12M16 10v12" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="16" cy="16" r="5" stroke="rgba(200,169,110,0.25)" stroke-width="1"/>
+          </svg>
+          <div>
+            <span class="std-app-tag">Pump Mini App · Telegram</span>
+            <p class="std-app-subtitle">Всё в одном месте</p>
+          </div>
+        </div>
+        <p class="std-app-desc">Расписание, задания, прогресс и связь с преподавателем — прямо в Telegram. Доступ сразу после записи.</p>
+        <div class="std-app-btns">
+          <a class="std-app-btn std-app-btn--tg" href="https://t.me/PumpEngSchool" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21.8 2.9L2.4 10.3c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 11.4-7.2c.5-.3 1 0 .6.4L9.8 16l-.3 5.1c.4 0 .6-.2.9-.4l2.1-2.1 4.4 3.2c.8.4 1.4.2 1.6-.7l2.9-13.7c.3-1.3-.5-1.9-1.6-1.5z" fill="var(--accent)"/></svg>
+            Открыть в Telegram
+          </a>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="stdCta" onclick="openTelegramStd()" style="width:100%;">Выбрать Standard × 8</button>
+
+    </div>
+  </div>
+</section>
+
 <!-- PACKAGES -->
 <section class="packages" id="packages">
   <div class="packages-header">
     <div>
       <div class="section-label">
-        <span class="section-label-num">03</span>
+        <span class="section-label-num">04</span>
         <div class="section-label-line"></div>
         <span class="section-label-text">Программы</span>
       </div>
@@ -2152,7 +2582,7 @@
 <!-- PROCESS -->
 <section class="process" id="process">
   <div class="section-label">
-    <span class="section-label-num">04</span>
+    <span class="section-label-num">05</span>
     <div class="section-label-line"></div>
     <span class="section-label-text">Процесс</span>
   </div>
@@ -2199,7 +2629,7 @@
 <!-- RESULTS -->
 <section class="results">
   <div class="section-label">
-    <span class="section-label-num">05</span>
+    <span class="section-label-num">06</span>
     <div class="section-label-line"></div>
     <span class="section-label-text">Результат</span>
   </div>
@@ -2239,7 +2669,7 @@
 <!-- QUIZ / ОТБОР -->
 <section class="quiz-section" id="quiz">
   <div class="section-label">
-    <span class="section-label-num">06</span>
+    <span class="section-label-num">07</span>
     <div class="section-label-line"></div>
     <span class="section-label-text">Отбор</span>
   </div>
@@ -2391,7 +2821,7 @@
   </div>
   <div class="footer-right">
     <a href="https://t.me/PumpEngSchool" target="_blank">Telegram</a>
-    <a href="https://www.instagram.com/pump.english.official?igsh=N3Y3NjE1cXc2MDE4&utm_source=qr" target="_blank">Instagram</a>
+    <a href="https://instagram.com/" target="_blank">Instagram</a>
   </div>
 </footer>
 
@@ -2666,7 +3096,65 @@
 </div>
 
 <script>
-  // ─── AUDIT MODAL ──────────────────────────────
+  // ─── STANDARD PACKET ──────────────────────────
+  let stdMode = 8;
+  let stdIndividual = false;
+
+  function switchStd(n) {
+    stdMode = n;
+    document.getElementById('stdOpt8').classList.toggle('active', n === 8);
+    document.getElementById('stdOpt12').classList.toggle('active', n === 12);
+
+    const isMore = n === 12;
+    document.getElementById('stdNameSub').textContent = isMore ? '× 12' : '× 8';
+    document.getElementById('stdTagline').textContent = isMore
+      ? 'Интенсивный темп. Быстрый прогресс.'
+      : 'Устойчивый прогресс. Без спешки.';
+    document.getElementById('stdSpecLessons').textContent = isMore ? '12' : '8';
+    document.getElementById('stdSpecPerWeek').textContent = isMore ? '3×' : '2×';
+    document.getElementById('stdPrice').textContent = isMore ? '$210' : '$170';
+    document.getElementById('stdPriceNote').textContent = isMore
+      ? '12 занятий · ~$17.5 за занятие'
+      : '8 занятий · ~$21 за занятие';
+
+    const extra = document.getElementById('stdExtraFeature');
+    if (isMore) {
+      extra.style.opacity = '1';
+      document.getElementById('stdExtraText').textContent = 'Дополнительный разговорный клуб × 4/мес.';
+    } else {
+      extra.style.opacity = '0.35';
+      document.getElementById('stdExtraText').textContent = 'Дополнительный разговорный клуб × 2/мес.';
+    }
+
+    document.getElementById('stdCta').textContent = isMore ? 'Выбрать Standard × 12' : 'Выбрать Standard × 8';
+  }
+
+  function toggleIndividual() {
+    stdIndividual = !stdIndividual;
+    const box = document.getElementById('stdCheckbox');
+    const icon = document.getElementById('stdCheckIcon');
+    box.classList.toggle('checked', stdIndividual);
+    icon.style.display = stdIndividual ? 'block' : 'none';
+  }
+
+  function openTelegramStd() {
+    const lessons = stdMode === 12 ? '12' : '8';
+    const price = stdMode === 12 ? '$210' : '$170';
+    const format = stdIndividual
+      ? '👤 Формат: Индивидуально (без группы)'
+      : '👥 Формат: Группа 5–7 человек';
+
+    const msg =
+`Привет! Хочу записаться на Standard Packet.
+
+📌 Программа: Standard × ${lessons} — Английский как язык
+📆 Занятий в месяц: ${lessons}
+${format}
+💰 Стоимость: ${stdIndividual ? 'Обсудим индивидуально' : price + '/мес.'}
+
+Хочу узнать подробнее и записаться.`;
+    window.open('https://t.me/PumpEngSchool?text=' + encodeURIComponent(msg), '_blank');
+  }
   const auditData = { name:'', contact:'', q2:'', q3:'', q4:'' };
 
   function openAudit() {
