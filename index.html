@@ -10,8 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
- :root {
+  :root {
     --black: #0a0a0a;
     --white: #f5f4f0;
     --navy: #1a2448;
@@ -1694,19 +1693,49 @@
     background: rgba(200,169,110,0.08);
     border-color: var(--accent);
   }
+
+  /* Standard — tablet */
+  @media (max-width: 900px) {
+    .std-card { grid-template-columns: 1fr; }
     .std-card-left { border-right: none; border-bottom: 1px solid rgba(200,169,110,0.15); padding: 36px 28px; }
     .std-card-right { padding: 36px 28px; }
     .std-selector-wrap { flex-direction: column; align-items: flex-start; gap: 12px; }
   }
 
+  /* Standard — mobile */
   @media (max-width: 540px) {
-    .std-card-left { padding: 28px 20px; }
-    .std-card-right { padding: 28px 20px; }
-    .std-card-name { font-size: 48px; }
-    .std-card-name span { font-size: 36px; }
+    .std-selector-wrap { flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 24px; }
+    .std-selector { width: 100%; display: flex; }
+    .std-opt { flex: 1; padding: 14px 12px; }
+    .std-opt-num { font-size: 30px; }
+    .std-opt-sub { font-size: 8px; letter-spacing: 1px; }
+
+    .std-card { grid-template-columns: 1fr; }
+    .std-card-left { padding: 24px 16px; border-right: none; border-bottom: 1px solid rgba(200,169,110,0.15); }
+    .std-card-right { padding: 24px 16px; gap: 16px; }
+
+    .std-card-name { font-size: 44px; }
+    .std-card-name span { font-size: 34px; }
+    .std-card-tagline { font-size: 12px; }
+
+    .std-price-block { padding: 18px 20px; }
     .std-price-big { font-size: 52px; }
-    .std-opt { padding: 14px 28px; }
-    .std-opt-num { font-size: 34px; }
+    .std-price-label { font-size: 8px; }
+    .std-price-note { font-size: 11px; }
+
+    .std-app-block { padding: 18px 20px; gap: 10px; }
+    .std-app-header { gap: 10px; }
+    .std-app-tag { font-size: 9px; }
+    .std-app-desc { font-size: 11px; }
+    .std-app-btns { width: 100%; }
+    .std-app-btn { font-size: 9px; padding: 10px 14px; width: 100%; justify-content: center; text-align: center; }
+
+    .std-features { gap: 8px; margin-top: 20px; }
+    .std-feature { font-size: 12px; }
+
+    .std-individual-wrap { margin-top: 20px; padding-top: 16px; }
+    .std-individual-title { font-size: 12px; }
+    .std-individual-sub { font-size: 10px; }
   }
 
   .audit-overlay {
@@ -2373,11 +2402,11 @@
             <circle cx="16" cy="16" r="5" stroke="rgba(200,169,110,0.25)" stroke-width="1"/>
           </svg>
           <div>
-            <span class="std-app-tag">PumpEng Mini App · Telegram</span>
-            <p class="std-app-subtitle">Подписка оформляется через Telegram бота</p>
+            <span class="std-app-tag">Pump Mini App · Telegram</span>
+            <p class="std-app-subtitle">Всё в одном месте</p>
           </div>
         </div>
-        <p class="std-app-desc">Приложение-тренажер, которое будет твоим лучшим помощником в самостоятельном пути.</p>
+        <p class="std-app-desc">Расписание, задания, прогресс и связь с преподавателем — прямо в Telegram. Доступ сразу после записи.</p>
         <div class="std-app-btns">
           <a class="std-app-btn std-app-btn--tg" href="https://t.me/PumpEngSchool" target="_blank">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21.8 2.9L2.4 10.3c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 11.4-7.2c.5-.3 1 0 .6.4L9.8 16l-.3 5.1c.4 0 .6-.2.9-.4l2.1-2.1 4.4 3.2c.8.4 1.4.2 1.6-.7l2.9-13.7c.3-1.3-.5-1.9-1.6-1.5z" fill="var(--accent)"/></svg>
